@@ -53,12 +53,17 @@ RegisterNetEvent('rsg_tobaccofactory:client:dryleaves')
 AddEventHandler('rsg_tobaccofactory:client:dryleaves', function(amount)
 	if amount ~= nil then
 		local ticker = (amount * 5000)
-		ClearPedTasksImmediately(PlayerPedId())
-		exports.rprogress:Start('drying tobacco leaves..', ticker)
-		TriggerServerEvent('QBCore:Server:RemoveItem', "tobacco", amount)
-		TriggerServerEvent('QBCore:Server:AddItem', "tobaccodry", amount)
-		TriggerEvent("inventory:client:ItemBox", sharedItems["tobaccodry"], "add")
-		exports['rsg_notify']:DisplayNotification('you dried '..amount..' tobacco leaves', 5000)
+		exports['qbr-core']:Progressbar("dry_tobacco", "Dry Tobacco..", ticker, false, true, {
+            disableMovement = true,
+            disableCarMovement = false,
+            disableMouse = false,
+            disableCombat = true,
+        }, {}, {}, {}, function() -- Done
+			TriggerServerEvent('QBCore:Server:RemoveItem', "tobacco", amount)
+			TriggerServerEvent('QBCore:Server:AddItem', "tobaccodry", amount)
+			TriggerEvent("inventory:client:ItemBox", sharedItems["tobaccodry"], "add")
+			exports['rsg_notify']:DisplayNotification('you dried '..amount..' tobacco leaves', 5000)
+        end)
 	else
 		exports['rsg_notify']:DisplayNotification('you don\'t have any tobacco leaves to dry!', 5000)
 	end
@@ -68,12 +73,17 @@ RegisterNetEvent('rsg_tobaccofactory:client:makecigar')
 AddEventHandler('rsg_tobaccofactory:client:makecigar', function(amount)
 	if amount ~= nil then
 		local ticker = (amount * 5000)
-		ClearPedTasksImmediately(PlayerPedId())
-		exports.rprogress:Start('making cigars..', ticker)
-		TriggerServerEvent('QBCore:Server:RemoveItem', "tobaccodry", amount)
-		TriggerServerEvent('QBCore:Server:AddItem', "cigar", amount)
-		TriggerEvent("inventory:client:ItemBox", sharedItems["cigar"], "add")
-		exports['rsg_notify']:DisplayNotification('you made '..amount..' cigars', 5000)
+		exports['qbr-core']:Progressbar("make_cigar", "Making Cigars..", ticker, false, true, {
+            disableMovement = true,
+            disableCarMovement = false,
+            disableMouse = false,
+            disableCombat = true,
+        }, {}, {}, {}, function() -- Done
+			TriggerServerEvent('QBCore:Server:RemoveItem', "tobaccodry", amount)
+			TriggerServerEvent('QBCore:Server:AddItem', "cigar", amount)
+			TriggerEvent("inventory:client:ItemBox", sharedItems["cigar"], "add")
+			exports['rsg_notify']:DisplayNotification('you made '..amount..' cigars', 5000)
+		end)
 	else
 		exports['rsg_notify']:DisplayNotification('you don\'t have any dry tobacco leaves!', 5000)
 	end
@@ -83,12 +93,17 @@ RegisterNetEvent('rsg_tobaccofactory:client:makecigarbox')
 AddEventHandler('rsg_tobaccofactory:client:makecigarbox', function(amount)
 	if amount ~= nil then
 		local ticker = (amount * 60000)
-		ClearPedTasksImmediately(PlayerPedId())
-		exports.rprogress:Start('packing cigars..', ticker)
-		TriggerServerEvent('QBCore:Server:RemoveItem', "cigar", 10)
-		TriggerServerEvent('QBCore:Server:AddItem', "cigarbox", 1)
-		TriggerEvent("inventory:client:ItemBox", sharedItems["cigarbox"], "add")
-		exports['rsg_notify']:DisplayNotification('you packed a box of cigars', 5000)
+		exports['qbr-core']:Progressbar("make_cigarbox", "Packing Box of Cigars..", ticker, false, true, {
+            disableMovement = true,
+            disableCarMovement = false,
+            disableMouse = false,
+            disableCombat = true,
+        }, {}, {}, {}, function() -- Done
+			TriggerServerEvent('QBCore:Server:RemoveItem', "cigar", 10)
+			TriggerServerEvent('QBCore:Server:AddItem', "cigarbox", 1)
+			TriggerEvent("inventory:client:ItemBox", sharedItems["cigarbox"], "add")
+			exports['rsg_notify']:DisplayNotification('you packed a box of cigars', 5000)
+		end)
 	else
 		exports['rsg_notify']:DisplayNotification('you don\'t have any cigars to pack!', 5000)
 	end
