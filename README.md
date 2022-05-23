@@ -20,7 +20,7 @@
 # Starting the resource
 - add the following to your server.cfg file : ensure rsg_tobaccofactory
 
-# Location of Factory (x,y,z0
+# Location of Factory (x,y,z)
 1831.8741, -1272.373, 43.352951
 
 # Support : please state your purchase ID, date of purchase and version
