@@ -23,6 +23,6 @@
 # Location of Factory (x,y,z)
 1831.8741, -1272.373, 43.352951
 
-# Support : please state your purchase ID, date of purchase and version
+# Support
 - discord : https://discord.gg/s5uSk56B65
 - email : rexshackuk@gmail.com
